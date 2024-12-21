@@ -3,11 +3,12 @@ services:
     build: .
     image: flex-datasource
     environment:
+      - DATABASE_URL=mysql://root:root@host.docker.internal:3306/user
       - DB_PROTOCOL=mysql
       - DB_USER=root
       - DB_PASSWORD=root
       - DB_HOST=host.docker.internal
-      - DB_PORT=3306
+      - DB_PORT=3307
       - DB_DATABASE=user
       - DB_CONNECTION_LIMIT=5
       - DB_POOL_TIMEOUT=2
@@ -29,7 +30,7 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: 'root'
     ports:
-      - '3307:3307'
+      - '3307:3306'
     volumes:
       - 'db2:/var/lib/mysql'
       
