@@ -1,0 +1,38 @@
+services:
+  app:
+    build: .
+    image: flex-datasource
+    environment:
+      - DB_PROTOCOL=mysql
+      - DB_USER=root
+      - DB_PASSWORD=root
+      - DB_HOST=host.docker.internal
+      - DB_PORT=3306
+      - DB_DATABASE=user
+      - DB_CONNECTION_LIMIT=5
+      - DB_POOL_TIMEOUT=2
+
+    ports:
+      - "3000:3000"
+
+  db:
+    image: mysql:8
+    environment:
+      MYSQL_ROOT_PASSWORD: 'root'
+    ports:
+      - '3306:3306'
+    volumes:
+      - 'db:/var/lib/mysql'
+
+  db2:
+    image: mysql:8
+    environment:
+      MYSQL_ROOT_PASSWORD: 'root'
+    ports:
+      - '3307:3307'
+    volumes:
+      - 'db2:/var/lib/mysql'
+      
+volumes:
+  db:
+  db2:
